@@ -5,7 +5,9 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         primaryKey: true,
         validate: {
-          isEmail: true
+          isEmail: {
+            message: 'No es un correo'
+          }
         }
       },
       nombre: {

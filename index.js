@@ -7,8 +7,7 @@ const port = process.env.PORT || 3000
 
 var corsOptions = {
 	origin: "http://localhost:3000"
-  };
-  
+};
 app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -22,6 +21,6 @@ db.sequelize.sync({ force: false }).then(() => {
 require("./routes/user")(app)
 
 app.listen(port, () => {
-	console.log(`Corriendo en http://localhost:${port}`)
+	console.log(`Corriendo en http://localhost:${port}/vd`)
 })
 
