@@ -19,6 +19,7 @@ db.sequelize.sync({ force: false }).then(() => {
 });
 
 require("./routes/user")(app)
+require("./routes/empresa")(app)
 
 app.listen(port, () => {
 	console.log(`Corriendo en http://localhost:${port}/vd`)
