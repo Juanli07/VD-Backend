@@ -2,9 +2,11 @@ const db = require("../models");
 const User = db.user;
 const Op = db.Sequelize.Op;
 const { generateHash } = require('../utils/genarateHash')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 // Creando y guardando un nuevo usuario
-exports.create = (req, res) => {
+let create = (req, res) => {
   //Validando request
   if(!req.body.email){
       res.status(400).send({
@@ -28,7 +30,9 @@ exports.create = (req, res) => {
 
   //Guardando
   User.create(user).then( data => {
-      res.send(data)
+      res.status(200).send({
+          message: "Creacion de usuario exitosa"
+      })
   }).catch(err => {
       res.status(500).send({
           message: 
@@ -39,38 +43,38 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all Tutorials from the database.
-exports.findAll = (req, res) => {
-  User.findAll().then( data => {
-      res.send(data)
-  }).catch(err => {
-      res.status(500).send({
-          message:
-            err.message || "Some error ocurred while retrieving users"
-      })
-  })
+let findAll = (req, res) => {
+    let email = req.body.email
+    email = email ? { email: { [Op.like]: `%${email}%` } } : null;
+    User.findAll( {where: email }).then( (user) => {
+        if(user){
+            if(bcrypt.compareSync(req.body.contrasena, user[0].contrasena)){
+                let token = jwt.sign({check: true})
+            }
+        }
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error ocurred while retrieving users"
+        })
+    })
 };
 
 // Find a single Tutorial with an id
-exports.findOne = (req, res) => {
+let findOne = (req, res) => {
   
 };
 
 // Update a Tutorial by the id in the request
-exports.update = (req, res) => {
+let update = (req, res) => {
   
 };
+let sendMsg = (req, res) => {
+    res.send({message :  "hola mundo"})
+}
 
-// Delete a Tutorial with the specified id in the request
-exports.delete = (req, res) => {
-  
-};
-
-// Delete all Tutorials from the database.
-exports.deleteAll = (req, res) => {
-  
-};
-
-// Find all published Tutorials
-exports.findAllPublished = (req, res) => {
-  
+module.exports = {
+    create,
+    findAll,
+    sendMsg
 }

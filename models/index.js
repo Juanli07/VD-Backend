@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize")
-const sequelize = new Sequelize("vd", "root", "123", {
+const sequelize = new Sequelize("vd", "root", "", {
     host: "localhost",
     dialect: "mysql",
     pool: {
@@ -16,4 +16,6 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 
 db.user = require("./user.js")(sequelize, Sequelize)
+db.empresa = require("./empresa.js")(sequelize, Sequelize)
+//Agregar modelos
 module.exports = db
