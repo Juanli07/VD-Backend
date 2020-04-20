@@ -1,7 +1,7 @@
 const db = require("../models");
 const User = db.user;
 const Op = db.Sequelize.Op;
-const { generateHash } = require('../utils/genarateHash')
+const { generateHash, checkHash } = require('../utils/genarateHash')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -48,8 +48,10 @@ let findAll = (req, res) => {
     email = email ? { email: { [Op.like]: `%${email}%` } } : null;
     User.findAll( {where: email }).then( (user) => {
         if(user){
-            if(bcrypt.compareSync(req.body.contrasena, user[0].contrasena)){
-                let token = jwt.sign({check: true})
+            if(checkHash(req.body.contrasena, user[0].contrasena)){
+                res.status(200).send({
+                    message: "Contraseña correcta"
+                })
             }
         }
     }).catch(err => {
