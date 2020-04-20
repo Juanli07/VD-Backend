@@ -3,7 +3,7 @@ const User = db.user;
 const Op = db.Sequelize.Op;
 const { generateHash, checkHash } = require('../utils/genarateHash')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const { createToken } = require('../utils/auth')
 
 // Creando y guardando un nuevo usuario
 let create = (req, res) => {
@@ -31,7 +31,8 @@ let create = (req, res) => {
   //Guardando
   User.create(user).then( data => {
       res.status(200).send({
-          message: "Creacion de usuario exitosa"
+          message: "Creacion de usuario exitosa",
+          token: createToken(user)
       })
   }).catch(err => {
       res.status(500).send({
@@ -50,7 +51,11 @@ let findAll = (req, res) => {
         if(user){
             if(checkHash(req.body.contrasena, user[0].contrasena)){
                 res.status(200).send({
-                    message: "Contraseña correcta"
+                    token: createToken(user)
+                })
+            }else{
+                res.status(500).send({
+                    message: 'Password incorrect'
                 })
             }
         }
