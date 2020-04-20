@@ -6,7 +6,7 @@ const app = express()
 const port = process.env.PORT || 3000
 
 var corsOptions = {
-	origin: "http://localhost:3000"
+    origin: "http://localhost:3000"
 };
 app.use(cors(corsOptions));
 
@@ -15,13 +15,13 @@ app.use(bodyParser.json())
 
 const db = require("./models")
 db.sequelize.sync({ force: false }).then(() => {
-	console.log("Drop and re-sync db.");
+    console.log("Drop and re-sync db.");
 });
 
 require("./routes/user")(app)
 require("./routes/empresa")(app)
+require("./routes/cont_emergencia")(app)
 
 app.listen(port, () => {
-	console.log(`Corriendo en http://localhost:${port}/vd`)
+    console.log(`Corriendo en http://localhost:${port}/vd`)
 })
-
