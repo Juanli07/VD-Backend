@@ -5,7 +5,7 @@ module.exports = app => {
     let router = require("express").Router()
 
     router.post("/user", user.create)
-    router.post("/login", user.findAll)
+    router.post("/login", user.login)
     router.get("/", user.sendMsg)
     //IsAuth es el aunteticador, que se encarga de verificar si el token aun no ha expirado
     router.get("/auth", isAuth, (req, res) => {

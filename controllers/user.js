@@ -43,12 +43,11 @@ let create = (req, res) => {
 
 };
 
-// Retrieve all Tutorials from the database.
-let findAll = (req, res) => {
+let login = (req, res) => {
     let email = req.body.email
-    email = email ? { email: { [Op.like]: `%${email}%` } } : null;
-    User.findAll( {where: email, active: true }).then( (user) => {
-        if(user){
+    // email = email ? { email: { [Op.like]: `%${email}%` } } : null;
+    User.findAll( {where: { email, active: true} }).then( (user) => {
+        if(user.length >0 ){
             if(checkHash(req.body.contrasena, user[0].contrasena)){
                 res.status(200).send({
                     token: createToken(user)
@@ -58,6 +57,10 @@ let findAll = (req, res) => {
                     message: 'Password incorrect'
                 })
             }
+        }else{
+            res.status(403).send({
+                message: "User not found"
+            })
         }
     }).catch(err => {
         res.status(500).send({
@@ -82,6 +85,6 @@ let sendMsg = (req, res) => {
 
 module.exports = {
     create,
-    findAll,
+    login,
     sendMsg
 }
