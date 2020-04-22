@@ -78,3 +78,4 @@ module.exports = {
     findAll,
     sendMsg
 }
+
