@@ -9,8 +9,9 @@ function isAuth(req, res, next){
         })
     }
     let token = req.headers.authorization.split(" ")[1]
+    let payload;
     try{
-        let payload = jwt.decode(token, key)
+        payload = jwt.decode(token, key)
     }catch(err){
         return res.status(403).send({
             message: 'No tienes autorización'
