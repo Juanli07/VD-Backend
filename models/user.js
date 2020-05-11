@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
     const User = sequelize.define("usuario", {
         email: {
             type: Sequelize.STRING,
-            primaryKey: true,
+            unique: true,
             validate: {
                 isEmail: {
                     message: 'No es un correo'

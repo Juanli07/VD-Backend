@@ -1,9 +1,9 @@
 const db = require("../models");
 const User = db.user;
 const Op = db.Sequelize.Op;
-const { generateHash } = require('../utils/genarateHash')
+const { generateHash, checkHash } = require('../utils/genarateHash')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const { createToken } = require('../utils/auth')
 
 // Creando y guardando un nuevo usuario
 let create = (req, res) => {
@@ -31,7 +31,8 @@ let create = (req, res) => {
   //Guardando
   User.create(user).then( data => {
       res.status(200).send({
-          message: "Creacion de usuario exitosa"
+          message: "Creacion de usuario exitosa",
+          token: createToken(user)
       })
   }).catch(err => {
       res.status(500).send({
@@ -42,15 +43,24 @@ let create = (req, res) => {
 
 };
 
-// Retrieve all Tutorials from the database.
-let findAll = (req, res) => {
+let login = (req, res) => {
     let email = req.body.email
-    email = email ? { email: { [Op.like]: `%${email}%` } } : null;
-    User.findAll( {where: email }).then( (user) => {
-        if(user){
-            if(bcrypt.compareSync(req.body.contrasena, user[0].contrasena)){
-                let token = jwt.sign({check: true})
+    // email = email ? { email: { [Op.like]: `%${email}%` } } : null;
+    User.findAll( {where: { email, active: true} }).then( (user) => {
+        if(user.length >0 ){
+            if(checkHash(req.body.contrasena, user[0].contrasena)){
+                res.status(200).send({
+                    token: createToken(user)
+                })
+            }else{
+                res.status(500).send({
+                    message: 'Password incorrect'
+                })
             }
+        }else{
+            res.status(403).send({
+                message: "User not found"
+            })
         }
     }).catch(err => {
         res.status(500).send({
@@ -75,6 +85,6 @@ let sendMsg = (req, res) => {
 
 module.exports = {
     create,
-    findAll,
+    login,
     sendMsg
 }
