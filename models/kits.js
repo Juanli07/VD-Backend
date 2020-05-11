@@ -1,4 +1,4 @@
-module.exports =(sequelize, Sequelize)=>{
+module.exports =(sequelize, Sequeligitze)=>{
     const kits = sequelize.define("kits",{
         id: {
             type: Sequelize.INTEGER,
@@ -9,6 +9,8 @@ module.exports =(sequelize, Sequelize)=>{
         },
         id_convocatoria: {
             type: Sequelize.INTEGER,
+            foreingkey: true,
+            allowNull:false,
             validate: {
                 isNumeric: true
 

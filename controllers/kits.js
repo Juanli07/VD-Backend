@@ -5,13 +5,10 @@ const Op = db.sequelize.Op;
 //crear nuevo kit
 
 let create = (req, res)=>{
-    //validar reques
-    
-
     //crear
     let kits = {
     id: req.body.id,
-    id_conv: req.body.id_convocatoria,
+    id_convocatoria: req.body.id_convocatoria,
     requisitos: req.body.requisitos    
     }
 
