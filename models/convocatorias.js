@@ -21,14 +21,14 @@ const convocatoria= sequelize.define("convocatoria",{
         type: Sequelize.STRING,
         allowNull:false,
         validate:{
-            notEmpety:true,
+            notEmpty:true,
         }
     },
     costo:{
         type:Sequelize.FLOAT(9,2),
         allowNull:false,
         validate:{
-            isFLOAT:true
+            isFloat:true
         }
     },
     fecha:{
@@ -49,7 +49,7 @@ const convocatoria= sequelize.define("convocatoria",{
         type: Sequelize.FLOAT(9,2),
         notNUll: true,
         validate:{
-            isFLOAT:true
+            isFloat:true
         }
 
     },
@@ -60,7 +60,7 @@ const convocatoria= sequelize.define("convocatoria",{
             isNumeric:true
         }
     },
-    activate:{
+    active:{
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: true
