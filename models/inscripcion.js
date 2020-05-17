@@ -20,13 +20,13 @@ module.exports = (sequelize, Sequelize) => {
             }
         },
         id_usuario: {
-            foreingkey: true,
             type: Sequelize.STRING,
             validate: {
                 isEmail: {
                     message: 'No es un correo'
                 }
-            }
+            },
+            foreingkey: true
 
         },
         fecha: {
@@ -38,7 +38,7 @@ module.exports = (sequelize, Sequelize) => {
         numero_participante: {
             type: Sequelize.STRING,
             validate: {
-                noEmpty: true
+                notEmpty: true
             }
         },
         active: {

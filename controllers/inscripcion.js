@@ -44,5 +44,5 @@ let findAll = (req, res) => {
 
 module.exports = {
     create,
-    findAll,
+    findAll
 }
