@@ -25,7 +25,6 @@ let create = (req, res) => {
     })
 
 };
-
 //Encontrar 
 let findAll = (req, res) => {
     let id = req.body.id
