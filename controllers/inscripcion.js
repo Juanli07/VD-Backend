@@ -41,8 +41,41 @@ let findAll = (req, res) => {
         })
     })
 };
+let baja = (req, res) => {
+    let id = req.body.id
+    Inscripcion.update(req.body, {
+            where: { id: id }
+        })
+        .then(num => {
+            if (num == 1) {
+                Inscripcion.update({
+                    active: false,
+                }, {
+                    where: {
+                        id: id,
+                        active: {
+                            [Op.ne]: false
+                        }
+                    }
+                });
+                res.send({
+                    message: "Inscripción dada de baja"
+                });
+            } else {
+                res.send({
+                    message: `No es posible dar de baja a la inscripción: ${id}.`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error al dar de baja a la inscripción: " + id
+            });
+        });
+};
 
 module.exports = {
     create,
-    findAll
+    findAll,
+    baja
 }
