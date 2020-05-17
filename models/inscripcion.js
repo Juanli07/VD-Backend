@@ -13,8 +13,6 @@ module.exports = (sequelize, Sequelize) => {
         },
         id_convocatoria: {
             type: Sequelize.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
             allowNull: false,
             validate: {
                 isNumeric: true
@@ -22,7 +20,6 @@ module.exports = (sequelize, Sequelize) => {
         },
         id_usuario: {
             type: Sequelize.STRING,
-            primaryKey: true,
             validate: {
                 isEmail: {
                     message: 'No es un correo'
