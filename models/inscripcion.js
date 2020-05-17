@@ -13,18 +13,21 @@ module.exports = (sequelize, Sequelize) => {
         },
         id_convocatoria: {
             type: Sequelize.INTEGER,
+            foreingkey: true,
             allowNull: false,
             validate: {
                 isNumeric: true
             }
         },
         id_usuario: {
+            foreingkey: true,
             type: Sequelize.STRING,
             validate: {
                 isEmail: {
                     message: 'No es un correo'
                 }
             }
+
         },
         fecha: {
             type: Sequelize.DATE,
