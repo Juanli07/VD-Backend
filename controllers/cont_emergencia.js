@@ -61,31 +61,40 @@ let findAll = (req, res) => {
         res.send(cont_emergencia);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error ocurred while retrieving users"
+            message: err.message || "Ocurrió un error al buscar el contacto"
         })
     })
 };
 //Borrar, por alguna razon me marcaba error cuando ponia delete, asi que lo deje en delet
 let delet = (req, res) => {
-    let id = req.body.id;
-
-    Cont_emergencia.destroy({
+    let id = req.body.id
+    Cont_emergencia.update(req.body, {
             where: { id: id }
         })
         .then(num => {
             if (num == 1) {
+                Cont_emergencia.update({
+                    active: false,
+                }, {
+                    where: {
+                        id: id,
+                        active: {
+                            [Op.ne]: false
+                        }
+                    }
+                });
                 res.send({
-                    message: "Contacto eliminado correctamente"
+                    message: "Contacto eliminado satisfactoriamente"
                 });
             } else {
                 res.send({
-                    message: `No se puede eliminar el contacto con id=${id}. No se encontro!`
+                    message: `No es posible eliminar el contacto con id=${id}.`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error al eliminar el contacto con id=" + id
+                message: "Error al eliminar el contacto con el id=" + id
             });
         });
 };

@@ -1,5 +1,6 @@
+const { password } = require('../config')
 const Sequelize = require("sequelize")
-const sequelize = new Sequelize("vd", "root", "", {
+const sequelize = new Sequelize("vd", "root", password, {
     host: "localhost",
     dialect: "mysql",
     pool: {
