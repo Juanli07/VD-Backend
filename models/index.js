@@ -1,7 +1,8 @@
 const { password } = require('../config')
 const Sequelize = require("sequelize")
-const sequelize = new Sequelize("vd", "root", password, {
-    host: "localhost",
+// mSk_5rt_ejmD^$EK
+const sequelize = new Sequelize("sql9342871", "sql9342871", password, {
+    host: "sql9.freemysqlhosting.net",
     dialect: "mysql",
     pool: {
         max: 5,
