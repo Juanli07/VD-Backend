@@ -1,7 +1,7 @@
 const db = require("../models");
 const Empresa = db.empresa;
 const Op = db.Sequelize.Op;
-//token???
+
 
 //Crean y guardar empresas
 let create = (req, res) =>{
@@ -30,7 +30,102 @@ let create = (req, res) =>{
 
 };
 
-//token 2.0???
+//Actualizacion/edicion
+let update = (req, res) => {
+    let id = req.body.id
+    Empresa.update(req.body, {
+        where: { id: id }
+    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Empresa actualizado correctamente."
+                });
+            } else {
+                res.send({
+                    message: `No es posible actualizar la empresa cin id=${id}. Es probable que el contacto no se haya encontrado o no existe`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error al acutualizar la empresa con el id=" + id
+            });
+        });
+
+};
+//eliminar
+
+let delet = (req, res) => {
+    let id = req.body.id
+    Empresa.update(req.body, {
+        where: { id: id }
+    })
+        .then(num => {
+            if (num == 1) {
+                Empresa.update({
+                    active: false,
+                }, {
+                    where: {
+                        id: id,
+                        active: {
+                            [Op.ne]: false
+                        }
+                    }
+                });
+                res.send({
+                    message: "Empresa eliminada correctamente."
+                });
+            } else {
+                res.send({
+                    message: `No es posible eliminar la empresa cin id=${id}.`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error al eliminar la empresa con el id=" + id
+            });
+        });
+    
+
+};
+
+//Recuperar todos las Empresas
+let findAll = (req,res)=>{
+    let title = req.query.title;
+    var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+    Empresa.findAll({ where: condition, active: true })
+        .then(data => {
+            res.send(data)                                
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving Empresas."
+            })
+        })
+};
+
+//Recuperar una sola empresa
+let findOne = (req,res) => {
+    let id = req.body.id;
+
+    Empresa.findByPk(id)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error al buscar la empresa con el id=" + id
+            });
+        });
+};
+
 module.exports={
-    create
+    create,
+    update,
+    delet,
+    findAll,
+    findOne
 }

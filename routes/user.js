@@ -10,7 +10,7 @@ module.exports = app => {
     //IsAuth es el aunteticador, que se encarga de verificar si el token aun no ha expirado
     router.get("/auth", isAuth, (req, res) => {
         res.status(200).send({
-            message: "Es correcto"
+            message: 'Access!'
         })
     })
     //put actualizar, delete eliminar, post insertar, get enviar datos

@@ -25,18 +25,6 @@ module.exports = (sequelize, Sequelize) => {
                 notEmpty: true
             }
         },
-        genero: {
-            type: Sequelize.STRING,
-            validate: {
-                notEmpty: true
-            }
-        },
-        fecha_nacimiento: {
-            type: Sequelize.DATE,
-            validate: {
-                isDate: true
-            }
-        },
         isAdmin: {
             type: Sequelize.BOOLEAN,
             defaultValue: false

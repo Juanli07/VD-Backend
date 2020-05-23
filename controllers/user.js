@@ -21,8 +21,6 @@ let create = (req, res) => {
       nombre: req.body.nombre,
       contrasena: generateHash(req.body.contrasena),
       cel: req.body.cel,
-      genero: req.body.genero,
-      fecha_nacimiento: req.body.fecha_nacimiento,
       isAdmin: req.body.isAdmin,
       salario: req.body.salario,
       ref_ce: req.body.ref_ce
@@ -50,7 +48,8 @@ let login = (req, res) => {
         if(user.length >0 ){
             if(checkHash(req.body.contrasena, user[0].contrasena)){
                 res.status(200).send({
-                    token: createToken(user)
+                    token: createToken(user),
+                    user: user[0].nombre
                 })
             }else{
                 res.status(500).send({
@@ -88,3 +87,4 @@ module.exports = {
     login,
     sendMsg
 }
+

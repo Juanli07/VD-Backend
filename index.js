@@ -18,6 +18,9 @@ db.sequelize.sync({ force: false }).then(() => {
 require("./routes/user")(app)
 require("./routes/empresa")(app)
 require("./routes/cont_emergencia")(app)
+require("./routes/kits")(app)
+require("./routes/inscripcion")(app)
+require("./routes/convocatorias")(app)
 
 app.listen(port, () => {
     console.log(`Corriendo en http://localhost:${port}/vd`)

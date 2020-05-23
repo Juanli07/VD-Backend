@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Cont_emergencia = sequelize.define("cont_emergencia", {
+    const Inscripcion = sequelize.define("inscripcion", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -11,22 +11,31 @@ module.exports = (sequelize, Sequelize) => {
                 }
             }
         },
-        email: {
+        id_convocatoria: {
+            type: Sequelize.INTEGER,
+            foreingkey: true,
+            allowNull: false,
+            validate: {
+                isNumeric: true
+            }
+        },
+        id_usuario: {
             type: Sequelize.STRING,
             validate: {
                 isEmail: {
                     message: 'No es un correo'
                 }
-            }
-        },
-        nombre: {
-            type: Sequelize.STRING,
-            validate: {
-                notEmpty: true
-            }
-        },
+            },
+            foreingkey: true
 
-        cel: {
+        },
+        fecha: {
+            type: Sequelize.DATE,
+            validate: {
+                isDate: true
+            }
+        },
+        numero_participante: {
             type: Sequelize.STRING,
             validate: {
                 notEmpty: true
@@ -39,5 +48,5 @@ module.exports = (sequelize, Sequelize) => {
     }, {
         freezeTableName: true
     });
-    return Cont_emergencia
+    return Inscripcion
 };
