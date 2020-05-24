@@ -28,10 +28,11 @@ let create = (req, res) => {
 
   //Guardando
   User.create(user).then( data => {
+      user.contrasena = '?'
       res.status(200).send({
           message: "Creacion de usuario exitosa",
           token: createToken(user),
-          user: user.nombre
+          user: user
       })
   }).catch(err => {
       res.status(500).send({
@@ -48,9 +49,11 @@ let login = (req, res) => {
     User.findAll( {where: { email, active: true} }).then( (user) => {
         if(user.length >0 ){
             if(checkHash(req.body.contrasena, user[0].contrasena)){
+                user[0].contrasena = '?'
                 res.status(200).send({
                     token: createToken(user),
-                    user: user[0].nombre
+                    user: user[0]
+
                 })
             }else{
                 res.status(500).send({
