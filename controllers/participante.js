@@ -16,8 +16,8 @@ let create = (req, res) => {
         cel: req.body.cel,
         genero: req.body.genero,
         fecha_nacimiento: req.body.fecha_nacimiento,
+        club: req.body.club,
         ref_ce: req.body.ref_ce,
-        num: req.body.num,
     }
 
     Participante.create(participante).then( data => {

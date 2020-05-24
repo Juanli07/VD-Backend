@@ -24,13 +24,13 @@ module.exports = (sequelize, Sequelize) => {
         genero: {
             type: Sequelize.STRING
         },
+        club: {
+            type:Sequelize.STRING
+        },
         fecha_nacimiento: {
             type:Sequelize.DATE
         },
         ref_ce : {
-            type: Sequelize.INTEGER
-        },
-        num: {
             type: Sequelize.INTEGER
         },
         active: {
