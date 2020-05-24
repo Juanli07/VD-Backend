@@ -33,7 +33,7 @@ let get = (req, res) => {
         }
     }).then(data => {
         res.status(200).send({
-            data: data
+            data: data[0]
         })
     }).catch(err => {
         res.status(400).send({})
