@@ -21,6 +21,7 @@ require("./routes/cont_emergencia")(app)
 require("./routes/kits")(app)
 require("./routes/inscripcion")(app)
 require("./routes/convocatorias")(app)
+require("./routes/participante")(app)
 
 app.listen(port, () => {
     console.log(`Corriendo en http://localhost:${port}/vd`)

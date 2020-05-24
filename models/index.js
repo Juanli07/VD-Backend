@@ -23,5 +23,6 @@ db.inscripcion = require("./inscripcion.js")(sequelize, Sequelize)
 db.cont_emergencia = require("./cont_emergencia.js")(sequelize, Sequelize)
 db.kits =require("./kits")(sequelize,Sequelize)
 db.convocatorias = require("./convocatorias")(sequelize, Sequelize)
+db.participante = require("./participante")(sequelize, Sequelize)
     //Agregar modelos
 module.exports = db

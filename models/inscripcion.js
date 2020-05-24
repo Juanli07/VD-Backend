@@ -21,11 +21,6 @@ module.exports = (sequelize, Sequelize) => {
         },
         id_usuario: {
             type: Sequelize.STRING,
-            validate: {
-                isEmail: {
-                    message: 'No es un correo'
-                }
-            },
             foreingkey: true
 
         },
