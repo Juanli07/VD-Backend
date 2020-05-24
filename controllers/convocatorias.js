@@ -24,7 +24,23 @@ let create =(req,res)=>{
         })
     })
 };
+let get = (req, res) => {
+    convocatorias_model.findAll({
+        where: {
+            fecha: {
+                [Op.gt]: new Date()
+            }
+        }
+    }).then(data => {
+        res.status(200).send({
+            data: data
+        })
+    }).catch(err => {
+        res.status(400).send({})
+    })
+}
 
 module.exports = {
-    create
+    create,
+    get
 }
