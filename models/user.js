@@ -35,12 +35,6 @@ module.exports = (sequelize, Sequelize) => {
                 isFloat: true
             }
         },
-        ref_ce: {
-            type: Sequelize.INTEGER,
-            validate: {
-                isNumeric: true
-            }
-        },
         active: {
             type: Sequelize.BOOLEAN,
             defaultValue: true

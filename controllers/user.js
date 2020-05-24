@@ -30,7 +30,8 @@ let create = (req, res) => {
   User.create(user).then( data => {
       res.status(200).send({
           message: "Creacion de usuario exitosa",
-          token: createToken(user)
+          token: createToken(user),
+          user: user.nombre
       })
   }).catch(err => {
       res.status(500).send({
