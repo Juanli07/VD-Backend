@@ -9,7 +9,6 @@ let create = (req, res) =>{
 
     //creando empresa
     let empresa ={
-        id: req.body.id,
         nombre: req.body.nombre,
         tel: req.body.tel,
         direccion: req.body.direccion,

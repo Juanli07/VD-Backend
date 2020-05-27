@@ -1,14 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const Empresa = sequelize.define("empresa", {
-      id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false,
-        validate: {
-          isNumeric: true
-        },
-      },
       nombre: {
         type: Sequelize.STRING,
         allowNull: false,
