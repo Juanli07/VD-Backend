@@ -8,6 +8,7 @@ let create =(req,res)=>{
         id:req.body.id,
         id_empresa:req.body.id_empresa,
         titulo:req.body.titulo,
+        banner:req.body.banner,
         costo:req.body.costo,
         fecha:req.body.fecha,
         ref_modalidad:req.body.ref_modalidad,
