@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize)=>{
 const convocatoria= sequelize.define("convocatoria",{
-    id:{
+    /*id:{
         type:Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement:true,
@@ -8,9 +8,9 @@ const convocatoria= sequelize.define("convocatoria",{
         validate: {
             isNumeric: true
         } 
-    },
+    },*/
     id_empresa:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         foreingkey: true //no estoy seguro de esto
         ,allowNull:false
         ,validate: {

@@ -5,7 +5,7 @@ const Op=db.Sequelize.Op;
 //creacion de convocatorias
 let create =(req,res)=>{
     let convocatoria ={
-        id:req.body.id,
+        //id:req.body.id,
         id_empresa:req.body.id_empresa,
         titulo:req.body.titulo,
         banner:req.body.banner,
