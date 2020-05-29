@@ -46,9 +46,11 @@ const convocatoria= sequelize.define("convocatoria",{
         }
     },
     ref_modalidad:{
-        type:Sequelize.TEXT,
-        notNUll: true
-        
+        type:Sequelize.STRING,
+        notNUll: true,
+        validate:{
+        isNumeric:true
+    }
     },
     precio:{
         type: Sequelize.FLOAT(9,2),
