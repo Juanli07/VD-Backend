@@ -49,7 +49,7 @@ const convocatoria= sequelize.define("convocatoria",{
         type:Sequelize.STRING,
         notNUll: true,
         validate:{
-        isNumeric:true
+            isNumeric: true
     }
     },
     precio:{
