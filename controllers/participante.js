@@ -23,6 +23,7 @@ let create = (req, res) => {
     Participante.create(participante).then( data => {
         res.status(200).send({
             message: "inscripcion exitosa",
+            participante: data
         })
     }).catch( err => {
         res.status(500).send({

@@ -16,7 +16,8 @@ let create = (req, res) => {
     //Guardando
     Cont_emergencia.create(cont_emergencia).then((data) => {
         res.status(200).send({
-            message: "Contacto de emergencia creado exitosamente"
+            message: "Contacto de emergencia creado exitosamente",
+            cont: data
         })
     }).catch((err) => {
         res.status(400).send({
