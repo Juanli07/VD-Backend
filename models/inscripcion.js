@@ -19,16 +19,17 @@ module.exports = (sequelize, Sequelize) => {
                 isNumeric: true
             }
         },
+        modalidad: {
+            type: Sequelize.STRING
+        },
         id_usuario: {
             type: Sequelize.STRING,
             foreingkey: true
 
         },
         fecha: {
-            type: Sequelize.DATE,
-            validate: {
-                isDate: true
-            }
+            type: 'TIMESTAMP',
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
         numero_participante: {
             type: Sequelize.STRING,

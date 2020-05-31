@@ -25,6 +25,7 @@ let create = (req, res) => {
             message: "inscripcion exitosa",
             participante: data
         })
+        return
     }).catch( err => {
         res.status(500).send({
             message: "Error, no se realizo el registro"

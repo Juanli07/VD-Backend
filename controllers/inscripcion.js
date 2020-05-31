@@ -10,9 +10,9 @@ let create = (req, res) => {
         id_convocatoria: req.body.id_convocatoria,
         id_usuario: req.body.id_usuario,
         fecha: req.body.fecha,
+        modalidad: req.body.modalidad,
         numero_participante: req.body.numero_participante
     }
-
     //Guardando
     Inscripcion.create(inscripcion).then((data) => {
         res.status(200).send({

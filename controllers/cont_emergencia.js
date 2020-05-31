@@ -9,7 +9,6 @@ let create = (req, res) => {
         id: req.body.id,
         email: req.body.email,
         nombre: req.body.nombre,
-        direccion: req.body.direccion,
         cel: req.body.cel
     }
 
