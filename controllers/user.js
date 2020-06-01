@@ -73,14 +73,53 @@ let login = (req, res) => {
     })
 };
 
+let all = (req, res) => {
+    User.findAll().then( user => {
+        res.status(200).send({
+            user
+        })
+    }).catch( err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error ocurred while retrieving users"
+        })
+    })
+}
+
 // Find a single Tutorial with an id
 let findOne = (req, res) => {
-  
+  User.update({
+      isAdmin: !req.body.isAdmin
+  }, {
+      where: {
+          id: req.body.id
+      }
+  }).then( data => {
+    res.status(200).send()
+  }).catch( err => {
+    res.status(500).send({
+        message:
+            err.message || "Some error ocurred while retrieving users"
+    })
+  })
 };
 
 // Update a Tutorial by the id in the request
 let update = (req, res) => {
-  
+    User.update({
+        active: req.body.active
+    }, {
+        where: {
+            id: req.body.id
+        }
+    }).then( data => {
+      res.status(200).send()
+    }).catch( err => {
+      res.status(500).send({
+          message:
+              err.message || "Some error ocurred while retrieving users"
+      })
+    })
 };
 let sendMsg = (req, res) => {
     res.send({message :  "hola mundo"})
@@ -89,6 +128,9 @@ let sendMsg = (req, res) => {
 module.exports = {
     create,
     login,
-    sendMsg
+    sendMsg,
+    all,
+    findOne,
+    update
 }
 
