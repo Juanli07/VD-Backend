@@ -11,7 +11,8 @@ let create = (req, res) => {
         id_usuario: req.body.id_usuario,
         fecha: req.body.fecha,
         modalidad: req.body.modalidad,
-        numero_participante: req.body.numero_participante
+        numero_participante: req.body.numero_participante,
+        kitState: req.body.kitState
     }
     //Guardando
     Inscripcion.create(inscripcion).then((data) => {
@@ -73,9 +74,26 @@ let baja = (req, res) => {
             });
         });
 };
+let opdate = (req, res) => {
+    Inscripcion.update({
+        kitStatus: req.body.kitStatus
+    }, {
+        where: {
+            id: req.body.id
+        }
+    }).then( data => {
+      res.status(200).send()
+    }).catch( err => {
+      res.status(500).send({
+          message:
+              err.message || "Some error ocurred while retrieving users"
+      })
+    })
+}
 
 module.exports = {
     create,
     findAll,
-    baja
+    baja,
+    opdate
 }

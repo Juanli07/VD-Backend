@@ -37,6 +37,10 @@ module.exports = (sequelize, Sequelize) => {
                 notEmpty: true
             }
         },
+        kitState: {
+            type: Sequelize.STRING,
+            defaultValue: '0|0|0'
+        },
         active: {
             type: Sequelize.BOOLEAN,
             defaultValue: true
