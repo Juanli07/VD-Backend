@@ -93,6 +93,7 @@ let opdate = (req, res) => {
 }
 let sendReport =  async (req, res) => {
     let filters = {}
+    console.log(req.body)
     let inscripcion = await Inscripcion.findAll({where: {id_convocatoria: req.body.id_convocatoria}})
     let part = new Array()
     for(const insc in inscripcion){
