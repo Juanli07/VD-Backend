@@ -77,7 +77,7 @@ let baja = (req, res) => {
 };
 let opdate = (req, res) => {
     Inscripcion.update({
-        kitStatus: req.body.kitStatus
+        kitState: req.body.kitState
     }, {
         where: {
             id: req.body.id
