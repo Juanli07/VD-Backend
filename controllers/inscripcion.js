@@ -1,5 +1,6 @@
 const db = require("../models");
 const Inscripcion = db.inscripcion;
+const Participante = db.participante;
 const Op = db.Sequelize.Op;
 
 
@@ -90,10 +91,31 @@ let opdate = (req, res) => {
       })
     })
 }
+let sendReport =  async (req, res) => {
+    let filters = {}
+    let inscripcion = await Inscripcion.findAll({where: {id_convocatoria: req.body.id_convocatoria}})
+    let part = new Array()
+    for(const insc in inscripcion){
+        filters.id = inscripcion[insc].dataValues.id_usuario
+        try{
+            let pa = await Participante.findOne({
+                where: filters
+            })
+            part.push(pa)
+        }catch(error){
+            res.status(500).send({
+                message:
+                    err.message || "Some error ocurred while retrieving users"
+            })
+        }
+    }
+    res.status(200).send( {inscripcion, part});
+}
 
 module.exports = {
     create,
     findAll,
     baja,
-    opdate
+    opdate,
+    sendReport
 }
