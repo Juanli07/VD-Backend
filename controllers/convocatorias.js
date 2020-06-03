@@ -9,12 +9,12 @@ let create =(req,res)=>{
         id_empresa:req.body.id_empresa,
         titulo:req.body.titulo,
         banner:req.body.banner,
-        costo:req.body.costo,
         fecha:req.body.fecha,
         ref_modalidad:req.body.ref_modalidad,
         precio:req.body.precio,
         num_participantes:req.body.num_participantes
     }
+    console.log(convocatoria)
     convocatorias_model.create(convocatoria).then((data)=>{
         res.status(200).send({
             message: "Convocatorias creada de manera exitosa"

@@ -31,13 +31,6 @@ const convocatoria= sequelize.define("convocatoria",{
             notEmpty:true
         }
     },
-    costo:{
-        type:Sequelize.FLOAT(9,2),
-        allowNull:false,
-        validate:{
-            isFloat:true
-        }
-    },
     fecha:{
         type: Sequelize.DATE,
         allowNull: false,
