@@ -28,11 +28,11 @@ let create = (req, res) => {
 
   //Guardando
   User.create(user).then( data => {
-      data[0].contrasena = '?'
+      data.contrasena = '?'
       res.status(200).send({
           message: "Creacion de usuario exitosa",
           token: createToken(user),
-          user: data[0]
+          user: data
       })
   }).catch(err => {
       res.status(500).send({
