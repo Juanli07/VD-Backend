@@ -89,7 +89,7 @@ let all = (req, res) => {
 // Find a single Tutorial with an id
 let findOne = (req, res) => {
   User.update({
-      isAdmin: !req.body.isAdmin
+      isAdmin: req.body.isAdmin
   }, {
       where: {
           id: req.body.id
