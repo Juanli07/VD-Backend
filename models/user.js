@@ -26,8 +26,8 @@ module.exports = (sequelize, Sequelize) => {
             }
         },
         isAdmin: {
-            type: Sequelize.BOOLEAN,
-            defaultValue: false
+            type: Sequelize.INTEGER,
+            defaultValue: 1
         },
         salario: {
             type: Sequelize.FLOAT(9, 2),
@@ -36,8 +36,8 @@ module.exports = (sequelize, Sequelize) => {
             }
         },
         active: {
-            type: Sequelize.INTEGER,
-            defaultValue: 1
+            type: Sequelize.BOOLEAN,
+            defaultValue: true
         }
     }, {
         freezeTableName: true
