@@ -36,8 +36,8 @@ module.exports = (sequelize, Sequelize) => {
             }
         },
         active: {
-            type: Sequelize.BOOLEAN,
-            defaultValue: true
+            type: Sequelize.INTEGER,
+            defaultValue: 1
         }
     }, {
         freezeTableName: true
