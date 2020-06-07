@@ -25,7 +25,7 @@ const convocatoria= sequelize.define("convocatoria",{
         }
     },
     banner:{
-        type: Sequelize.TEXT('long'),
+        type: Sequelize.STRING,
         allowNull:false,
         validate:{
             notEmpty:true
