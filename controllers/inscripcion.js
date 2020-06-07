@@ -43,6 +43,7 @@ let findAll = (req, res) => {
         })
     })
 };
+
 let baja = (req, res) => {
     let id = req.body.id
     Inscripcion.update(req.body, {
