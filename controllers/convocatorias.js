@@ -14,7 +14,6 @@ let create =(req,res)=>{
         precio:req.body.precio,
         num_participantes:req.body.num_participantes
     }
-    console.log(convocatoria)
     convocatorias_model.create(convocatoria).then((data)=>{
         res.status(200).send({
             message: "Convocatorias creada de manera exitosa"
